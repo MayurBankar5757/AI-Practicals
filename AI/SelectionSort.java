@@ -1,35 +1,44 @@
-import java.util.Arrays;
-
-class SelectionSort {
-  void selectionSort(int array[]) {
-    int size = array.length;
-
-    for (int step = 0; step < size - 1; step++) {
-      int min_idx = step;
-
-      for (int i = step + 1; i < size; i++) {
-
-        // To sort in descending order, change > to < in this line.
-        // Select the minimum element in each loop.
-        if (array[i] < array[min_idx]) {
-          min_idx = i;
+import java.io.*;
+public class SelectionSort
+{
+    void sort(int arr[])
+    {
+        int n = arr.length;
+ 
+        // One by one move boundary of unsorted subarray
+        for (int i = 0; i < n-1; i++)
+        {
+            // Find the minimum element in unsorted array
+            int min_idx = i;
+            for (int j = i+1; j < n; j++)
+                if (arr[j] < arr[min_idx])
+                    min_idx = j;
+ 
+            // Swap the found minimum element with the first
+            // element
+            int temp = arr[min_idx];
+            arr[min_idx] = arr[i];
+            arr[i] = temp;
         }
-      }
-
-      // put min at the correct position
-      int temp = array[step];
-      array[step] = array[min_idx];
-      array[min_idx] = temp;
     }
-  }
-
-  // driver code
-  public static void main(String args[]) {
-    int[] data = { 20, 12, 10, 15, 2 };
-    SelectionSort ss = new SelectionSort();
-    ss.selectionSort(data);
-    System.out.println("Sorted Array in Ascending Order: ");
-    System.out.println(Arrays.toString(data));
-  }
+ 
+    // Prints the array
+    void printArray(int arr[])
+    {
+        int n = arr.length;
+        for (int i=0; i<n; ++i)
+            System.out.print(arr[i]+" ");
+        System.out.println();
+    }
+ 
+    // Driver code to test above
+    public static void main(String args[])
+    {
+        SelectionSort ob = new SelectionSort();
+        int arr[] = {64,25,12,22,11};
+        ob.sort(arr);
+        System.out.println("Sorted array");
+        ob.printArray(arr);
+    }
 }
-
+/* This code is contributed by Rajat Mishra*/
